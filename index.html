@@ -137,12 +137,12 @@
                 z: "9",
             };
             let result = num.split("").filter((numbers) => !/[_ \(\)\,.-]/.test(numbers)).map((numbers) => x[numbers.toLowerCase()] || numbers).join("");
-            let result_2 = result.split(":")
-            let display = document.querySelector("#number").value = result_2[1]
+            // let result_2 = result.split(":")
+            let display = document.querySelector("#number").value = result
             setTimeout(() => {
                 document.querySelector("#number").value = ''
             }, 50000);
-            await navigator.clipboard.writeText(parseInt(result_2[1]));
+            await navigator.clipboard.writeText(parseInt(result));
 
             // Display a success message
             // alert("Copied the text: " + result);
