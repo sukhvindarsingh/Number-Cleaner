@@ -32,7 +32,7 @@
             font-size: 2.5em;
         }
 
-        input[type='text'] {
+        input[type='text'], .number {
             width: 80%;
             max-width: 600px;
             font-size: 1.5rem;
@@ -64,9 +64,19 @@
             border-radius: 1rem;
             background-color: #04333d;
         }
-        span{
+
+        span {
             color: rgb(241, 46, 46);
             text-wrap: nowrap;
+        }
+
+        .number{
+            background: #04333d;
+            color: beige;
+            position: relative;
+            height: 2.5rem;
+            padding-bottom: 2rem;
+            border: 2px solid beige;
         }
     </style>
 </head>
@@ -74,7 +84,10 @@
 <body>
     <div class="container">
         <h1>Welcome To Number Cleaner</h1>
+        <div style="font-size: 1.25rem; color: beige;"><b>Enter The Values</b></div>
         <input type="text" name="number" id="number" oninput="numberValidations()" autofocus autocomplete="off" />
+        <div style="font-size: 1.25rem; color: beige;"><b>Result</b></div>
+        <div class="number"></div>
         <div class="info">
             <h2>🔢 Dialerpad Decoder: Transform Alphabets into Numbers (with a Twist)! 🔢</h2>
             <div class="sub-info">
@@ -108,9 +121,12 @@
                 <section>
                     <h3>The Whispering Cipher <span>( ! Important )</span></h3><br>
                     <ul>
-                        <li>Number Incantation: Imagine a mystical number appearing, but this time, it listens to secrets whispered in its ear. 🤫</li>
-                        <li>Word Enchantment: Words, too, gather around the colon, eager to vanish. They huddle, their syllables fading into the ether. 📜✨</li>
-                        <li>Poof!: And then, with a flourish, they're gone—like smoke from an ancient spellbook. 🌬️🔮</li>
+                        <li>Number Incantation: Imagine a mystical number appearing, but this time, it listens to
+                            secrets whispered in its ear. 🤫</li>
+                        <li>Word Enchantment: Words, too, gather around the colon, eager to vanish. They huddle, their
+                            syllables fading into the ether. 📜✨</li>
+                        <li>Poof!: And then, with a flourish, they're gone—like smoke from an ancient spellbook. 🌬️🔮
+                        </li>
                     </ul>
                 </section>
             </div>
@@ -150,11 +166,11 @@
                 z: "9",
             };
             let result = num.split("").filter((numbers) => !/[_ \(\)\,.-]/.test(numbers)).map((numbers) => x[numbers.toLowerCase()] || numbers).join("");
-            let result_2 = result.includes(":")?result.split(":"):result
-            let output = Array.isArray(result_2)?result_2[1]:result
-            let display = document.querySelector("#number").value = output
+            let result_2 = result.includes(":") ? result.split(":") : result
+            let output = Array.isArray(result_2) ? result_2[1] : result
+            document.querySelector(".number").textContent = output
             setTimeout(() => {
-                document.querySelector("#number").value = ''
+                document.querySelector(".number").textContent = ''
             }, 50000);
             await navigator.clipboard.writeText(parseInt(output));
 
