@@ -32,7 +32,8 @@
             font-size: 2.5em;
         }
 
-        input[type='text'], .number {
+        input[type='text'],
+        .number {
             width: 80%;
             max-width: 600px;
             font-size: 1.5rem;
@@ -70,7 +71,7 @@
             text-wrap: nowrap;
         }
 
-        .number{
+        .number {
             background: #04333d;
             color: beige;
             position: relative;
@@ -92,12 +93,25 @@
             <h2>🔢 Dialerpad Decoder: Transform Alphabets into Numbers (with a Twist)! 🔢</h2>
             <div class="sub-info">
                 <section>
-                    <h3>Chrono-Entry Mode</h3><br>
+                    <h3>The Whispering Cipher <span>( ! Important )</span></h3><br>
                     <ul>
-                        <li>Step into the time machine and follow these temporal instructions</li>
-                        <li>Enter the Contact Number: Type or paste the contact number into the designated field. 📞
+                        <li>Number Incantation: Imagine a mystical number appearing, but this time, it listens to
+                            secrets whispered in its ear. 🤫</li>
+                        <li>Word Enchantment: Words, too, gather around the colon, eager to vanish. They huddle, their
+                            syllables fading into the ether. 📜✨</li>
+                        <li>Poof!: And then, with a flourish, they're gone—like smoke from an ancient spellbook. 🌬️🔮
                         </li>
-                        <li>Auto-Copy Engaged: No need to press Ctrl+C; the number automagically gets copied. 🎩✨</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>The Whispering Cipher <span>( ! Important )</span></h3><br>
+                    <ul>
+                        <li>Number Incantation: Imagine a mystical number appearing, but this time, it listens to
+                            secrets whispered in its ear. 🤫</li>
+                        <li>Word Enchantment: Words, too, gather around the colon, eager to vanish. They huddle, their
+                            syllables fading into the ether. 📜✨</li>
+                        <li>Poof!: And then, with a flourish, they're gone—like smoke from an ancient spellbook. 🌬️🔮
+                        </li>
                     </ul>
                 </section>
                 <section>
@@ -116,17 +130,6 @@
                     <ul>
                         <li>Countdown Commences: As soon as the number appears, it begins its countdown. ⏳</li>
                         <li>Vanish-o-Matic: After a few seconds, poof! The number disappears, leaving no trace. 🌪️</li>
-                    </ul>
-                </section>
-                <section>
-                    <h3>The Whispering Cipher <span>( ! Important )</span></h3><br>
-                    <ul>
-                        <li>Number Incantation: Imagine a mystical number appearing, but this time, it listens to
-                            secrets whispered in its ear. 🤫</li>
-                        <li>Word Enchantment: Words, too, gather around the colon, eager to vanish. They huddle, their
-                            syllables fading into the ether. 📜✨</li>
-                        <li>Poof!: And then, with a flourish, they're gone—like smoke from an ancient spellbook. 🌬️🔮
-                        </li>
                     </ul>
                 </section>
             </div>
@@ -165,10 +168,16 @@
                 y: "9",
                 z: "9",
             };
+            // all the validations are done with this written symtax
             let result = num.split("").filter((numbers) => !/[_ \(\)\,.-]/.test(numbers)).map((numbers) => x[numbers.toLowerCase()] || numbers).join("");
             let result_2 = result.includes(":") ? result.split(":") : result
             let output = Array.isArray(result_2) ? result_2[1] : result
             document.querySelector(".number").textContent = output
+            if (output.length == 10) {
+                save(); // This function will save data in local storage
+            }
+            /* setTimeout function is created for clearing the input value
+               so user can enter new value fast without having anykind of problems*/
             setTimeout(() => {
                 document.querySelector(".number").textContent = ''
             }, 50000);
@@ -177,6 +186,23 @@
             // Display a success message
             // alert("Copied the text: " + result);
         }
+
+        // This save function will store data into localstorage
+        function save() {
+            if (localStorage.getItem("data") == null) {
+                localStorage.setItem("data", "[]")
+            }
+            let old_data = JSON.parse(localStorage.getItem("data"))
+            let result = document.querySelector('.number').textContent
+            old_data.push(result)
+            localStorage.setItem("data", JSON.stringify(old_data))
+        }
+        // Event listeners for executing functions when certain changes occur
+        let button = document.querySelector("button")
+        button.addEventListener('click', save)
+
+        let number = document.querySelector("#number")
+        number.addEventListener('input', numberValidations)
     </script>
 </body>
 
