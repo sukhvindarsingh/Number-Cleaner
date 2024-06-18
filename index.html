@@ -178,6 +178,7 @@
                so user can enter new value fast without having anykind of problems*/
             setTimeout(() => {
                 document.querySelector(".number").textContent = ''
+                document.querySelector("#number").value = ''
             }, 50000);
             await navigator.clipboard.writeText(output);
 
