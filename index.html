@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Number - Cleaner</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300..900&display=swap');
+
         * {
             padding: 0;
             margin: 0;
@@ -79,6 +81,40 @@
             padding-bottom: 2rem;
             border: 2px solid beige;
         }
+
+        .history-icon {
+            position: absolute;
+            left: calc(100vw - 15vw);
+            top: 15vmin;
+            color: darkgray;
+            font-size: 1.25rem;
+        }
+
+        button {
+            font-size: 1rem;
+            padding: .4rem 5rem;
+            border-radius: .5rem;
+            border: 1px solid darkgray;
+            background-color: #04333d98;
+            color: aliceblue;
+            font-weight: 700;
+        }
+
+        button:hover{
+            color: #04333d;
+            background: #74c6d8;
+            border: 1px solid black;
+            transition: .25s;
+        }
+
+        .history-icon:hover {
+            color: #fff;
+        }
+
+        ::selection {
+            color: darkgray;
+            background: black;
+        }
     </style>
 </head>
 
@@ -89,6 +125,7 @@
         <input type="text" name="number" id="number" oninput="numberValidations()" autofocus autocomplete="off" />
         <div style="font-size: 1.25rem; color: beige;"><b>Result</b></div>
         <div class="number"></div>
+        <button>Copy</button>
         <div class="info">
             <h2>🔢 Dialerpad Decoder: Transform Alphabets into Numbers (with a Twist)! 🔢</h2>
             <div class="sub-info">
